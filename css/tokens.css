@@ -1,0 +1,35 @@
+/* An explainer, not a showcase. Quiet ground, long-form reading type, and one
+   accent per paper used only for wayfinding. Palette is CVD-validated:
+   worst adjacent pair dE 9.2 (deuteranopia), 23.6 normal vision. */
+:root{
+  --bg:#F7F7F4;
+  --surface:#FFFFFF;
+  --surface-2:#F0F0EB;
+  --line:#E0E0D8;
+  --line-2:#C6C6BC;
+
+  --ink:#1A1C20;
+  --ink-2:#41454C;
+  --ink-3:#6B7079;
+  --faint:#9CA1A9;
+
+  --p1:#C2352B;   /* paper 1, evaluation */
+  --p2:#0F7A5A;   /* paper 2, design */
+  --p3:#4340A8;   /* paper 3, training */
+  --p1-soft:#FAEBE9;
+  --p2-soft:#E4F2EC;
+  --p3-soft:#E8E7F6;
+
+  --ok:#0F7A5A;
+  --bad:#C2352B;
+
+  --display:'Fraunces',Georgia,serif;
+  --body:'Source Serif 4',Georgia,serif;
+  --ui:'Public Sans',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
+
+  --measure:44rem;
+  --wide:62rem;
+  --gutter:20px;
+  color-scheme:light;
+}
