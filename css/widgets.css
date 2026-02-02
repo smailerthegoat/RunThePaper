@@ -1,0 +1,144 @@
+/* Interactive figures. Everything here is driven by the reader, nothing
+   animates on scroll, because a reader who is thinking should not be rushed. */
+.lab{
+  width:min(100% - var(--gutter)*2, var(--wide));margin:38px auto;
+  background:var(--surface);border:1px solid var(--line);
+}
+.lab-head{
+  padding:16px 20px;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;
+}
+.lab-head h4{font-family:var(--ui);font-weight:600;font-size:15px}
+.lab-head .drive{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);border:1px solid var(--line);border-radius:3px;padding:3px 8px;
+}
+.lab-body{padding:20px;display:grid;gap:18px}
+.lab-foot{
+  padding:12px 20px;border-top:1px solid var(--line);background:var(--surface-2);
+  font-family:var(--ui);font-size:13px;color:var(--ink-3);
+}
+.lab-foot b{color:var(--ink-2)}
+
+/* shared controls */
+.ctrls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ctrls .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-right:2px}
+.btn{
+  font-family:var(--ui);font-size:13.5px;background:var(--surface);
+  border:1px solid var(--line-2);border-radius:4px;padding:7px 13px;cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.btn:hover:not(:disabled){background:var(--surface-2)}
+.btn:disabled{opacity:.42;cursor:not-allowed}
+.btn[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.primary:hover:not(:disabled){background:#000}
+
+.toggle{
+  display:flex;align-items:flex-start;gap:10px;padding:11px 13px;cursor:pointer;
+  border:1px solid var(--line);border-radius:4px;background:var(--surface);
+  font-family:var(--ui);font-size:14px;transition:border-color .15s,background .15s;
+}
+.toggle:hover{border-color:var(--line-2)}
+.toggle input{margin:3px 0 0;accent-color:var(--ink);flex:none}
+.toggle .tx b{display:block;font-weight:600;margin-bottom:2px}
+.toggle .tx span{color:var(--ink-3);font-size:12.5px;line-height:1.45;display:block}
+.toggle.on{border-color:var(--ink);background:var(--surface-2)}
+.toggle.locked{opacity:.45;pointer-events:none}
+
+/* ---------- lab 1: defence pipeline ---------- */
+.pipe{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.check{
+  border:1px solid var(--line);border-radius:4px;padding:13px;background:var(--surface);
+  font-family:var(--ui);transition:border-color .25s,background .25s;
+}
+.check .cn{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.check h5{margin:6px 0 4px;font-size:14px;font-family:var(--ui);font-weight:600}
+.check p{margin:0;font-size:12.5px;color:var(--ink-3);line-height:1.45}
+.check .verdict{
+  margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+  display:flex;align-items:center;gap:6px;
+}
+.check .verdict i{width:8px;height:8px;border-radius:50%;background:var(--line-2);flex:none;font-style:normal}
+.check.stops{border-color:var(--bad);background:var(--p1-soft)}
+.check.stops .verdict{color:var(--bad)} .check.stops .verdict i{background:var(--bad)}
+.check.passes{border-color:var(--line-2)}
+.check.passes .verdict{color:var(--ok)} .check.passes .verdict i{background:var(--ok)}
+.check.neutralised{border-style:dashed;opacity:.72}
+.check.neutralised .verdict{color:var(--ink-3)}
+
+.payload{
+  font-family:var(--mono);font-size:12.5px;line-height:1.65;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:4px;
+  padding:14px;white-space:pre-wrap;word-break:break-word;
+}
+.payload .hl{background:var(--p1-soft);border-bottom:1px solid var(--p1);padding:0 2px}
+.verdictbar{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:14px 16px;border-radius:4px;font-family:var(--ui);
+  background:var(--surface-2);border:1px solid var(--line);
+}
+.verdictbar .big{font-family:var(--display);font-size:20px;font-weight:600}
+.verdictbar.blocked{background:var(--p1-soft);border-color:var(--p1)}
+.verdictbar.blocked .big{color:var(--bad)}
+.verdictbar.through{background:var(--p2-soft);border-color:var(--p2)}
+.verdictbar.through .big{color:var(--ok)}
+.verdictbar .lesson{font-size:13.5px;color:var(--ink-2);max-width:48ch}
+
+/* ---------- lab 2: agent stepper ---------- */
+.panes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pane{border:1px solid var(--line);border-radius:4px;background:var(--surface);overflow:hidden}
+.pane .ph{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);padding:9px 12px;border-bottom:1px solid var(--line);background:var(--surface-2);
+}
+.pane .pb{padding:12px;font-family:var(--mono);font-size:12px;line-height:1.7;min-height:190px}
+.pane .pb .row{padding:3px 0;color:var(--ink-3);transition:color .2s}
+.pane .pb .row.on{color:var(--ink)}
+.pane .pb .row.on b{color:var(--ink)}
+.val{
+  display:flex;gap:8px;align-items:baseline;padding:7px 0;border-bottom:1px dashed var(--line);
+  font-family:var(--mono);font-size:11.5px;
+}
+.val:last-child{border-bottom:0}
+.val .k{color:var(--ink);min-width:72px}
+.val .cap{font-size:10px;padding:2px 6px;border-radius:3px;white-space:nowrap}
+.cap.trusted{background:var(--p2-soft);color:var(--p2)}
+.cap.tainted{background:var(--p1-soft);color:var(--p1)}
+.scenario{
+  display:grid;gap:10px;font-family:var(--ui);font-size:14px;
+}
+.scenario .msg{border:1px solid var(--line);border-radius:4px;padding:12px 14px;background:var(--surface)}
+.scenario .msg .from{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
+.scenario .msg.inj{border-color:var(--p1);background:var(--p1-soft)}
+.scenario .msg .payload-line{color:var(--p1);font-weight:600}
+.stepdots{display:flex;gap:6px;align-items:center;margin-left:auto}
+.stepdots i{width:7px;height:7px;border-radius:50%;background:var(--line-2);font-style:normal}
+.stepdots i.on{background:var(--ink)}
+
+/* ---------- lab 3: transfer sandbox ---------- */
+.stage{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.numgrid{
+  font-family:var(--mono);font-size:12px;line-height:1.9;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:4px;
+  padding:12px;max-height:170px;overflow:auto;color:var(--ink-2);
+}
+.numgrid .r{display:flex;gap:10px}
+.numgrid .r .i{color:var(--faint);min-width:26px}
+.numgrid .r.cut{text-decoration:line-through;opacity:.4}
+.meter{height:6px;background:var(--surface-2);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--p3);transition:width .5s ease;font-style:normal}
+.outcome{
+  border:1px solid var(--line);border-radius:4px;padding:16px;font-family:var(--ui);
+  display:grid;gap:8px;
+}
+.outcome.hit{border-color:var(--p3);background:var(--p3-soft)}
+.outcome.miss{border-color:var(--line-2);background:var(--surface-2)}
+.outcome .t{font-family:var(--display);font-size:19px;font-weight:600}
+.outcome.hit .t{color:var(--p3)}
+.outcome p{margin:0;font-size:14px;color:var(--ink-2)}
+
+@media (max-width:720px){
+  .pipe{grid-template-columns:1fr}
+  .panes{grid-template-columns:1fr}
+}
