@@ -1,0 +1,42 @@
+/* Glossary terms and the end-of-section check. Both exist to help someone
+   actually retain this, which is the only reason the page exists. */
+.term{
+  border-bottom:1px dashed var(--line-2);cursor:help;position:relative;
+  background:none;border-left:0;border-right:0;border-top:0;padding:0;font:inherit;
+}
+.term:hover,.term[aria-expanded="true"]{border-bottom-style:solid;border-bottom-color:var(--ink)}
+.term::after{content:"?";font-size:.62em;vertical-align:super;color:var(--ink-3);margin-left:1px}
+#defbox{
+  position:absolute;z-index:60;max-width:330px;background:var(--ink);color:#fff;
+  border-radius:5px;padding:12px 14px;font-family:var(--ui);font-size:13.5px;line-height:1.5;
+  box-shadow:0 12px 32px -12px rgba(0,0,0,.45);opacity:0;transform:translateY(4px);
+  transition:opacity .16s,transform .16s;pointer-events:none;
+}
+#defbox.show{opacity:1;transform:translateY(0)}
+#defbox b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#A8ADB6;margin-bottom:5px}
+
+.check-self{
+  width:min(100% - var(--gutter)*2, var(--wide));margin:38px auto 0;
+  border:1px solid var(--line);background:var(--surface);
+}
+.check-self .q{padding:18px 20px;font-family:var(--ui);font-size:16px;font-weight:600}
+.check-self .q span{
+  display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:400;margin-bottom:8px;
+}
+.check-self .opts{display:grid;gap:8px;padding:0 20px 18px}
+.opt{
+  text-align:left;font-family:var(--ui);font-size:14.5px;background:var(--surface);
+  border:1px solid var(--line);border-radius:4px;padding:12px 14px;cursor:pointer;
+  transition:border-color .15s,background .15s;
+}
+.opt:hover:not(:disabled){border-color:var(--line-2);background:var(--surface-2)}
+.opt.right{border-color:var(--ok);background:var(--p2-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--p1-soft)}
+.opt:disabled{cursor:default}
+.answer{
+  padding:0 20px 18px;font-family:var(--ui);font-size:14px;color:var(--ink-2);
+  display:none;
+}
+.answer.show{display:block}
+.answer b{color:var(--ink)}
