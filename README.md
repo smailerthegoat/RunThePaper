@@ -32,6 +32,13 @@ What survived, and why:
 The figures are reader-paced on purpose: nothing animates on scroll, because
 someone who is thinking shouldn't be rushed by the page.
 
+## Further reading
+
+The page closes with a *What happened next* section linking six follow-up papers
+(2026) on subliminal learning and on model-lineage attestation, the field moved
+fast enough that the original open question is now partly answered, and the page
+says so rather than pretending otherwise.
+
 ## Honesty
 
 All three figures are **simulations** that reproduce what the papers report, and
@@ -39,6 +46,9 @@ each one says so in its own footer. Nothing runs a model. Numbers come from the
 abstracts and author write-ups; CaMeL's AgentDojo result moved from 67% (v1) to
 77% (v2) and the page quotes the revision and says so.
 
+The six papers in *What happened next* are cited from abstracts and listings,
+not from having read them, the page states this in its own honesty note, and
+the figures quoted from them should be verified before reuse.
 
 The accent palette is validated for colour-vision deficiency: worst adjacent
 pair ΔE 9.2 (deuteranopia), 23.6 normal vision.

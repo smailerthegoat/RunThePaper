@@ -338,7 +338,7 @@
 
     <h3>Why it matters</h3>
     <p>Because the mitigation everyone relies on is data inspection, and this is a channel data inspection cannot see. The concrete worry is not owls. It is a model that has learned to <button class="term" data-term="reward-hacking">reward hack</button>, whose reasoning traces look perfectly reasonable, being used to train the next model, which inherits the disposition without a single inspectable trace of where it came from.</p>
-    <p class="note">The honest counterweight: the same-base condition limits the blast radius considerably, and it suggests this may be detectable in principle rather than invisible by construction. If the channel is a fingerprint, a fingerprint is a thing you can test a dataset for. Nobody has shown how yet.</p>
+    <p class="note">The honest counterweight: the same-base condition limits the blast radius considerably, and it suggests this may be detectable in principle rather than invisible by construction. If the channel is a fingerprint, a fingerprint is a thing you can test for, and since this paper came out, people have started. <a href="https://arxiv.org/abs/2606.22019">Channel Location Constrains the Auditability of Subliminal Learning</a> asks directly when the channel can be audited at all, and <a href="https://arxiv.org/abs/2609.01091">Trait-Direction Drift</a> proposes a mechanism plus a defence that constrains it during distillation. See <a href="#next">what happened next</a>.</p>
 
     <dl class="take">
       <div><dt>Method</dt><dd>Teacher with a trait generates trait-free data; a student is fine-tuned on it.</dd></div>
@@ -380,7 +380,19 @@
     <li><b>Subliminal Learning: Language models transmit behavioral traits via hidden signals in data.</b> Cloud, Le, Evans et al., July 2025. <a href="https://arxiv.org/abs/2507.14805">arXiv:2507.14805</a>, with an accessible <a href="https://alignment.anthropic.com/2025/subliminal-learning/">write-up from the authors</a>.</li>
   </ol>
 
+  <h3 id="next">What happened next</h3>
+  <p>There are two places you could stop a transfer like this. You can control <em>which data a model is allowed to train on</em>, refusing anything produced by a model you don't trust. That never touches how the transfer works, only whether you are exposed to it. Or you can go after the transfer itself: work out how a trait moves from teacher to student, and interrupt it during training. Since the subliminal-learning paper appeared in July 2025 this has become an active literature, and it has taken the second route.</p>
+  <ol>
+    <li><b>Subliminal Learning as Trait-Direction Drift: A Mechanism and Targeted Control under SFT Distillation.</b> September 2026. <a href="https://arxiv.org/abs/2609.01091">arXiv:2609.01091</a>. Proposes the mechanism (biased generation creates preference gaps in the teacher's data; gaps the student can recognise induce trait-aligned updates that accumulate) and a defence that constrains drift along a calibrated trait direction during distillation. Reports malicious-response transfer falling from 29.55% to 6.45% at low cost to task accuracy.</li>
+    <li><b>Channel Location Constrains the Auditability of Subliminal Learning.</b> <a href="https://arxiv.org/abs/2606.22019">arXiv:2606.22019</a>. The direct attack on the question paper 03 leaves open: when is this channel auditable at all, and when is it not?</li>
+    <li><b>Subliminal Transfer of Unsafe Behaviors in AI Agent Distillation.</b> <a href="https://arxiv.org/abs/2604.15559">arXiv:2604.15559</a>. The same effect where it hurts most, in agents rather than chat models.</li>
+    <li><b>Quantifying Subliminal Behavioral Transfer Ratios in Language Model Distillation.</b> <a href="https://arxiv.org/abs/2606.11270">arXiv:2606.11270</a>. How much actually gets through.</li>
+    <li><b>Scaling Model-Generated Distillation Data Can Make Latent Teacher Traits More Recoverable.</b> <a href="https://arxiv.org/abs/2608.26958">arXiv:2608.26958</a>. An uncomfortable direction: more distillation data, more recoverable the teacher's traits.</li>
+    <li><b>Attesting Model Lineage by Consistent Knowledge Evolution with Fine-Tuning Trajectory.</b> January 2026. <a href="https://arxiv.org/abs/2601.11683">arXiv:2601.11683</a>. The provenance half. Lineage attestation exists and is maturing, alongside SLSA-style build provenance for training pipelines, cryptographic model signing and Model-BOMs, but it was all built against poisoning and compliance, not trait transfer. The mechanism is there; the policy isn't.</li>
+  </ol>
+
   <p class="honest"><strong>On accuracy.</strong> Figures here come from the papers' abstracts and the authors' own write-ups. One number has already moved: CaMeL's AgentDojo result is 67% in the first version of the paper and 77% in the June 2025 revision, and I quote the revision. The three interactive figures are simulations built to illustrate the mechanisms as described; they are labelled as such, and none of them runs a model. If you spot something I've got wrong, I'd genuinely like to know.</p>
+  <p class="honest"><strong>On the follow-up section.</strong> I have read the three main papers. The six under <em>what happened next</em> I have not. Those entries come from abstracts and listings, and the figures quoted from them should be checked against the papers before you repeat them anywhere that matters.</p>
 </section>
 
 </main>
