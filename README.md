@@ -4,7 +4,7 @@ An AI safety and security explainer. Three 2025 papers, adaptive attacks, capabi
 design, and a training-time transfer channel, written up for someone with no
 background in the field, with three figures the reader operates.
 
-**Live:** https://smailerthegoat.github.io/website6/
+**Live:** https://smailerthegoat.github.io/RunThePaper/
 
 | # | Paper | The move |
 |---|-------|----------|
